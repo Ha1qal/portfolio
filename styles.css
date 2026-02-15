@@ -1741,50 +1741,6 @@ body.cursor-down .cursor-ring {
     }
 }
 
-@media (max-width: 900px), (pointer: coarse), (hover: none) {
-    :root {
-        --parallax-shift: 0px;
-        --parallax-video: 0px;
-        --parallax-orb-a: 0px;
-        --parallax-orb-b: 0px;
-    }
-
-    .bg-video {
-        opacity: 0.14;
-        transform: none;
-        transition: none;
-        filter: saturate(102%) contrast(100%) brightness(0.52);
-    }
-
-    body::before {
-        animation: none;
-        filter: blur(32px) saturate(105%);
-    }
-
-    .bg-grid,
-    .orb-a,
-    .orb-b {
-        transform: none;
-        transition: none;
-    }
-
-    .bg-orb {
-        filter: blur(64px);
-        opacity: 0.34;
-    }
-
-    .navbar {
-        backdrop-filter: none;
-        background: rgba(5, 10, 18, 0.92);
-    }
-
-    body.mobile-motion-lite .js-enhanced .reveal {
-        opacity: 1;
-        transform: none;
-        transition: none;
-    }
-}
-
 @media (prefers-reduced-motion: reduce) {
     .bg-video {
         display: none;
@@ -1857,7 +1813,7 @@ body.cursor-down .cursor-ring {
 
 @media (max-width: 760px) {
     .bg-video {
-        opacity: 0.14;
+        opacity: 0.18;
     }
 
     .navbar {
