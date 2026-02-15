@@ -1,0 +1,190 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Writeups | Raja Haiqal</title>
+    <meta name="description" content="A clean CTF and HTB writeup portfolio with step-by-step walkthroughs and screenshots.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <video class="bg-video" autoplay muted loop playsinline preload="metadata" aria-hidden="true">
+        <source src="assets/space-black-hole.1920x1080.mp4" type="video/mp4">
+    </video>
+    <div class="bg-orb orb-a"></div>
+    <div class="bg-orb orb-b"></div>
+    <div class="bg-grid"></div>
+
+    <header class="site-header" id="home">
+        <nav class="navbar">
+            <a class="brand" href="index.html">Raja Haiqal</a>
+            <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <div class="nav-links" id="navLinks">
+                <a href="index.html#about">About</a>
+                <a href="#writeups">Writeups</a>
+                <a href="malware.html">Malware Lab</a>
+                <a href="#htb-focus">HTB Focus</a>
+                <a href="#resources">Resources</a>
+            </div>
+        </nav>
+
+        <section class="hero">
+            <div class="hero-copy">
+                <p class="eyebrow">Writeups Page</p>
+                <h1>CTF and HTB walkthroughs in one searchable archive.</h1>
+                <p class="hero-text">
+                    Browse challenge writeups by event, category, and platform.
+                    Open each challenge in a focused reader with step-by-step notes and screenshots.
+                </p>
+                <div class="hero-cta">
+                    <a class="btn btn-primary" href="#writeups">Browse Writeups</a>
+                    <button class="btn btn-secondary" id="openLatest">Open Latest HTB</button>
+                    <a class="btn btn-secondary" href="malware.html">Open Malware Lab</a>
+                    <a class="btn btn-ghost" href="index.html">Back To Home</a>
+                </div>
+            </div>
+            <div class="hero-stats">
+                <article class="stat-card">
+                    <p class="stat-label">Total Writeups</p>
+                    <p class="stat-value" id="statWriteups">0</p>
+                </article>
+                <article class="stat-card">
+                    <p class="stat-label">CTF Events</p>
+                    <p class="stat-value" id="statEvents">0</p>
+                </article>
+                <article class="stat-card">
+                    <p class="stat-label">HTB Walkthroughs</p>
+                    <p class="stat-value" id="statHtb">0</p>
+                </article>
+            </div>
+        </section>
+    </header>
+
+    <main class="main-content">
+        <section class="controls-panel" id="writeups">
+            <div class="section-head">
+                <h2>Writeup Library</h2>
+                <p>Filter by platform, event, category, and keyword.</p>
+            </div>
+
+            <div class="filter-row">
+                <label class="sr-only" for="searchInput">Search</label>
+                <input type="search" id="searchInput" placeholder="Search challenge title, event, or tags">
+
+                <label class="sr-only" for="platformFilter">Platform</label>
+                <select id="platformFilter">
+                    <option value="all">All platforms</option>
+                    <option value="CTF">CTF</option>
+                    <option value="HTB">HTB</option>
+                </select>
+
+                <label class="sr-only" for="eventFilter">Event</label>
+                <select id="eventFilter">
+                    <option value="all">All events</option>
+                </select>
+
+                <label class="sr-only" for="categoryFilter">Category</label>
+                <select id="categoryFilter">
+                    <option value="all">All categories</option>
+                </select>
+
+                <label class="sr-only" for="sortFilter">Sort</label>
+                <select id="sortFilter">
+                    <option value="recent">Most recent</option>
+                    <option value="oldest">Oldest first</option>
+                    <option value="title">Title A-Z</option>
+                </select>
+
+                <button class="btn btn-ghost" id="clearFilters">Clear</button>
+            </div>
+
+            <div class="quick-tags" id="quickTags"></div>
+            <p class="result-meta" id="resultMeta">Loading writeups...</p>
+        </section>
+
+        <section class="writeup-section">
+            <aside class="event-sidebar">
+                <h3>Event Timeline</h3>
+                <ul id="eventTimeline"></ul>
+            </aside>
+            <div class="writeup-grid" id="writeupGrid"></div>
+        </section>
+
+        <section class="focus-panel" id="htb-focus">
+            <div class="section-head">
+                <h2>HTB Focus</h2>
+                <p>Machine and Sherlock walkthroughs with documented tasks and evidence screenshots.</p>
+            </div>
+            <div class="focus-cards" id="htbFocusCards"></div>
+        </section>
+
+        <section class="resources-panel" id="resources">
+            <div class="section-head">
+                <h2>Extra Resources</h2>
+                <p>Direct links to notes and PDF writeup archives.</p>
+            </div>
+            <div class="resources-grid">
+                <article class="resource-card">
+                    <h3>Malware Notes</h3>
+                    <p>Tooling references and analysis notes.</p>
+                    <a href="malware.html">Open Malware Lab</a>
+                </article>
+                <article class="resource-card">
+                    <h3>PDF Archive</h3>
+                    <ul class="resource-list">
+                        <li><a href="3108_Satria_2025/Ha1qal-writeup.pdf" target="_blank" rel="noopener">3108 Satria 2025</a></li>
+                        <li><a href="SIBER_SIAGA_25/T%27One%20writeup.pdf" target="_blank" rel="noopener">Siber Siaga 25</a></li>
+                        <li><a href="NEXSEC2025/NEXSEC%202025.pdf" target="_blank" rel="noopener">NEXSEC 2025</a></li>
+                        <li><a href="Kernel0CTF2025/KERNEL%C3%98-CTF%202025.pdf" target="_blank" rel="noopener">Kernel0 CTF 2025</a></li>
+                    </ul>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <button class="back-to-top" id="backToTop" aria-label="Back to top">Top</button>
+
+    <section class="reader-modal" id="readerModal" aria-hidden="true">
+        <div class="reader-shell" role="dialog" aria-modal="true" aria-labelledby="readerTitle">
+            <header class="reader-header">
+                <div class="reader-meta">
+                    <p class="reader-kicker" id="readerKicker">Writeup</p>
+                    <h2 id="readerTitle">Loading...</h2>
+                    <p class="reader-subtitle" id="readerSubtitle"></p>
+                </div>
+                <div class="reader-actions">
+                    <a id="openRawLink" class="btn btn-ghost" href="#" target="_blank" rel="noopener">Open raw file</a>
+                    <button class="btn btn-primary" id="closeReader">Close</button>
+                </div>
+            </header>
+            <div class="reader-progress">
+                <span id="readerProgressBar"></span>
+            </div>
+            <div class="reader-content-wrap" id="readerScroll">
+                <div class="reader-main">
+                    <div class="image-gallery" id="imageGallery"></div>
+                    <article class="markdown-view" id="readerContent"></article>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="image-lightbox" id="imageLightbox" aria-hidden="true">
+        <button class="lightbox-close" id="closeLightbox" aria-label="Close image">&times;</button>
+        <img id="lightboxImage" alt="Expanded screenshot">
+    </section>
+
+    <div class="cursor-ring" id="cursorRing" aria-hidden="true"></div>
+    <div class="cursor-dot" id="cursorDot" aria-hidden="true"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+

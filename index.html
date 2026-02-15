@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Raja Haiqal | Cybersecurity Portfolio</title>
+    <meta name="description" content="Personal cybersecurity portfolio of Raja Muhammad Haiqal Shah, including profile, projects, and CTF writeups.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+    <video class="bg-video" autoplay muted loop playsinline preload="metadata" aria-hidden="true">
+        <source src="assets/space-black-hole.1920x1080.mp4" type="video/mp4">
+    </video>
+    <div class="bg-orb orb-a"></div>
+    <div class="bg-orb orb-b"></div>
+    <div class="bg-grid"></div>
+
+    <header class="site-header" id="home">
+        <nav class="navbar">
+            <a class="brand" href="index.html">Raja Haiqal</a>
+            <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <div class="nav-links" id="navLinks">
+                <a href="#about">About</a>
+                <a href="#projects">Projects</a>
+                <a href="writeups.html">Writeups</a>
+                <a href="malware.html">Malware Lab</a>
+            </div>
+        </nav>
+
+        <section class="hero">
+            <div class="hero-copy reveal">
+                <p class="eyebrow">Introducing</p>
+                <h1 class="hero-headline">
+                    Raja Haiqal<br>
+                    <span>Cybersecurity Portfolio</span>
+                </h1>
+                <p class="hero-rotator-label">Focused on <span class="hero-rotating" id="heroWord">HTB Walkthroughs</span></p>
+                <p class="hero-text">
+                    Aspiring Network and System Engineer with hands-on internship experience in infrastructure support,
+                    virtualization, and endpoint security operations. I actively compete in CTFs and document my
+                    learning through structured writeups and walkthroughs.
+                </p>
+                <div class="hero-cta">
+                    <a class="btn btn-primary" href="writeups.html">Open Writeups</a>
+                    <a class="btn btn-secondary" href="malware.html">Open Malware Lab</a>
+                    <a class="btn btn-secondary" href="#projects">See Projects</a>
+                </div>
+            </div>
+            <aside class="profile-spotlight reveal" aria-label="Profile summary">
+                <div class="profile-avatar" aria-hidden="true">RH</div>
+                <p class="profile-name">Raja Muhammad Haiqal Shah</p>
+                <p class="profile-role">Network Security Student | CTF Player</p>
+                <ul class="profile-mini-list">
+                    <li>CompTIA Security+</li>
+                    <li>Ampang, Selangor</li>
+                </ul>
+                <div class="profile-mini-actions">
+                    <a class="btn btn-secondary" href="writeups.html">View Writeups</a>
+                    <a class="btn btn-ghost" href="https://www.linkedin.com/in/raja-haiqal" target="_blank" rel="noopener">LinkedIn</a>
+                </div>
+            </aside>
+        </section>
+    </header>
+
+    <main class="main-content home-main">
+        <section class="signal-quote reveal">
+            <p class="quote-copy" id="quoteText">"The signal is the truth. The noise is what distracts us from the truth."</p>
+            <p class="quote-author" id="quoteAuthor">Nate Silver</p>
+        </section>
+
+        <section class="home-panel reveal" id="about">
+            <div class="section-head">
+                <h2>About Me</h2>
+                <p>Diploma in Network Security student at German-Malaysian Institute.</p>
+            </div>
+            <div class="about-layout">
+                <article class="about-card">
+                    <h3>Professional Summary</h3>
+                    <p>
+                        I am building a career in network and systems engineering, supported by cybersecurity fundamentals.
+                        My internship work included AV deployment planning across 13 office levels, infrastructure support,
+                        issue diagnostics, and virtualization tasks using Proxmox VE and VMware ESXi.
+                    </p>
+                </article>
+                <article class="about-card">
+                    <h3>Contact</h3>
+                    <ul class="plain-list">
+                        <li>Email: <a href="mailto:rajahaiqal24@gmail.com">rajahaiqal24@gmail.com</a></li>
+                        <li>LinkedIn: <a href="https://www.linkedin.com/in/raja-haiqal" target="_blank" rel="noopener">linkedin.com/in/raja-haiqal</a></li>
+                        <li>Location: Ampang, Selangor, Malaysia</li>
+                    </ul>
+                </article>
+            </div>
+        </section>
+
+        <section class="home-panel reveal" id="projects">
+            <div class="section-head">
+                <h2>Projects</h2>
+                <p>Academic and practical projects, including team collaboration work.</p>
+            </div>
+            <div class="project-grid">
+                <article class="project-card project-highlight">
+                    <p class="project-kicker">Featured Team Project</p>
+                    <h3>UPDS - URL Phishing Detection System</h3>
+                    <p>
+                        Built with my groupmates as a Flask web application that integrates machine learning and API endpoints
+                        to classify and detect phishing URLs with high accuracy.
+                    </p>
+                    <p class="project-stack">Stack: HTML, CSS, JavaScript, Python Flask, ML, API</p>
+                    <a class="btn btn-primary" href="https://www.updsproject.com/" target="_blank" rel="noopener">Visit UPDS Project</a>
+                </article>
+
+                <article class="project-card">
+                    <h3>Library Management System</h3>
+                    <p>Full-stack web system built using PHP and MySQL for book and transaction management.</p>
+                </article>
+
+                <article class="project-card">
+                    <h3>Network Scanner</h3>
+                    <p>Python scanner to identify previously connected devices, detect active hosts, and report status.</p>
+                </article>
+
+                <article class="project-card">
+                    <h3>Movie Ticketing System</h3>
+                    <p>Java OOP-based ticketing platform for showtime, seat selection, and payment flow simulation.</p>
+                </article>
+            </div>
+        </section>
+
+        <section class="home-panel reveal" id="skills">
+            <div class="section-head">
+                <h2>Skills and Achievements</h2>
+                <p>Core technical strengths and notable results.</p>
+            </div>
+            <div class="skills-columns">
+                <article class="about-card">
+                    <h3>Technical Skills</h3>
+                    <ul class="chip-list">
+                        <li>Python</li>
+                        <li>C</li>
+                        <li>Java</li>
+                        <li>HTML/CSS/JavaScript</li>
+                        <li>SQL</li>
+                        <li>Bash</li>
+                        <li>PowerShell</li>
+                        <li>MySQL</li>
+                        <li>Wireshark</li>
+                        <li>Burp Suite</li>
+                        <li>Nmap</li>
+                        <li>Metasploit</li>
+                        <li>Snort</li>
+                        <li>Wazuh</li>
+                    </ul>
+                </article>
+                <article class="about-card">
+                    <h3>Highlights</h3>
+                    <ul class="timeline-list">
+                        <li>CompTIA Security+</li>
+                        <li>CRTA by CyberWarFare Labs</li>
+                        <li>Kernel0 CTF GMI 2025 - 1st Place</li>
+                        <li>Finalist: UM Cybersecurity Summit 2025</li>
+                        <li>Finalist: CODE COMBAT [X] I-HACK CTF 2024</li>
+                    </ul>
+                </article>
+            </div>
+            <div class="hero-cta about-cta">
+                <a class="btn btn-primary" href="writeups.html">Go To CTF/HTB Writeups Page</a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <p>Raja Haiqal | Cybersecurity Portfolio</p>
+        <p><a href="writeups.html">Browse all writeups</a></p>
+    </footer>
+
+    <button class="back-to-top" id="backToTop" aria-label="Back to top">Top</button>
+    <div class="cursor-ring" id="cursorRing" aria-hidden="true"></div>
+    <div class="cursor-dot" id="cursorDot" aria-hidden="true"></div>
+
+    <script src="home.js"></script>
+</body>
+</html>
