@@ -1,15 +1,17 @@
-﻿(function () {
+(function () {
     document.documentElement.classList.add('js-enhanced');
+    const motionLite = isMotionLiteDevice();
+    if (motionLite) document.body.classList.add('mobile-motion-lite');
 
     const menuToggle = document.getElementById('menuToggle');
     const navLinks = document.getElementById('navLinks');
     const backToTop = document.getElementById('backToTop');
     const scrollProgress = document.getElementById('scrollProgress');
-    initCursorEffects();
+    initCursorEffects(motionLite);
     initHeroRotator();
     initRandomQuote();
-    initScrollMotion(backToTop, scrollProgress);
-    initScrollFadeIn();
+    initScrollMotion(backToTop, scrollProgress, motionLite);
+    initScrollFadeIn(motionLite);
 
     if (menuToggle && navLinks) {
         menuToggle.addEventListener('click', () => {
@@ -40,12 +42,12 @@
 
 })();
 
-function initScrollFadeIn() {
+function initScrollFadeIn(motionLite) {
     const items = [...document.querySelectorAll('.reveal')];
     if (!items.length) return;
 
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (reducedMotion) {
+    if (reducedMotion || motionLite) {
         items.forEach((item) => item.style.setProperty('--fade-progress', '1'));
         return;
     }
@@ -84,9 +86,16 @@ function initScrollFadeIn() {
     update();
 }
 
-function initScrollMotion(backToTop, scrollProgress) {
+function initScrollMotion(backToTop, scrollProgress, motionLite) {
     const root = document.documentElement;
     let ticking = false;
+
+    if (motionLite) {
+        root.style.setProperty('--parallax-shift', '0px');
+        root.style.setProperty('--parallax-video', '0px');
+        root.style.setProperty('--parallax-orb-a', '0px');
+        root.style.setProperty('--parallax-orb-b', '0px');
+    }
 
     const update = () => {
         const y = window.scrollY || 0;
@@ -102,10 +111,12 @@ function initScrollMotion(backToTop, scrollProgress) {
             scrollProgress.style.transform = `scaleX(${progress})`;
         }
 
-        root.style.setProperty('--parallax-shift', `${Math.max(-90, y * -0.08)}px`);
-        root.style.setProperty('--parallax-video', `${Math.max(-160, y * -0.12)}px`);
-        root.style.setProperty('--parallax-orb-a', `${Math.max(-120, y * -0.06)}px`);
-        root.style.setProperty('--parallax-orb-b', `${Math.max(-200, y * -0.14)}px`);
+        if (!motionLite) {
+            root.style.setProperty('--parallax-shift', `${Math.max(-90, y * -0.08)}px`);
+            root.style.setProperty('--parallax-video', `${Math.max(-160, y * -0.12)}px`);
+            root.style.setProperty('--parallax-orb-a', `${Math.max(-120, y * -0.06)}px`);
+            root.style.setProperty('--parallax-orb-b', `${Math.max(-200, y * -0.14)}px`);
+        }
         root.style.setProperty('--scroll-depth', progress.toFixed(3));
         ticking = false;
     };
@@ -162,8 +173,8 @@ function initRandomQuote() {
     quoteAuthor.textContent = choice.author;
 }
 
-function initCursorEffects() {
-    if (window.matchMedia('(pointer: coarse)').matches) return;
+function initCursorEffects(motionLite) {
+    if (motionLite || window.matchMedia('(pointer: coarse), (hover: none)').matches) return;
 
     const ring = document.getElementById('cursorRing');
     const dot = document.getElementById('cursorDot');
@@ -208,4 +219,8 @@ function initCursorEffects() {
     window.addEventListener('blur', () => {
         document.body.classList.remove('cursor-hover', 'cursor-down');
     });
+}
+
+function isMotionLiteDevice() {
+    return window.matchMedia('(max-width: 900px), (hover: none), (pointer: coarse), (prefers-reduced-motion: reduce)').matches;
 }

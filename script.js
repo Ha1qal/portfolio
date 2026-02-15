@@ -66,15 +66,18 @@ const refs = {};
 const state = {
     all: [],
     filtered: [],
-    active: null
+    active: null,
+    motionLite: false
 };
 
 function init() {
+    state.motionLite = isMotionLiteDevice();
+    if (state.motionLite) document.body.classList.add('mobile-motion-lite');
     cacheDom();
     state.all = normalizeCatalog(WRITEUP_CATALOG);
     bindEvents();
     initCursorEffects();
-    applyBackgroundParallax(window.scrollY || 0);
+    applyBackgroundParallax(state.motionLite ? 0 : (window.scrollY || 0));
     renderStats();
     buildFilters();
     renderQuickTags();
@@ -212,12 +215,18 @@ function bindEvents() {
         link.addEventListener('click', () => refs.navLinks.classList.remove('open'));
     });
 
+    let scrollTicking = false;
     window.addEventListener('scroll', () => {
-        const y = window.scrollY || 0;
-        if (y > 500) refs.backToTop.classList.add('visible');
-        else refs.backToTop.classList.remove('visible');
-        applyBackgroundParallax(y);
-    });
+        if (scrollTicking) return;
+        scrollTicking = true;
+        requestAnimationFrame(() => {
+            const y = window.scrollY || 0;
+            if (y > 500) refs.backToTop.classList.add('visible');
+            else refs.backToTop.classList.remove('visible');
+            if (!state.motionLite) applyBackgroundParallax(y);
+            scrollTicking = false;
+        });
+    }, { passive: true });
 
     refs.backToTop.addEventListener('click', () => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -911,6 +920,13 @@ function polishLine(line) {
 
 function applyBackgroundParallax(scrollY) {
     const root = document.documentElement;
+    if (state.motionLite) {
+        root.style.setProperty('--parallax-shift', '0px');
+        root.style.setProperty('--parallax-video', '0px');
+        root.style.setProperty('--parallax-orb-a', '0px');
+        root.style.setProperty('--parallax-orb-b', '0px');
+        return;
+    }
     const y = Number(scrollY) || 0;
     root.style.setProperty('--parallax-shift', `${Math.max(-90, y * -0.08)}px`);
     root.style.setProperty('--parallax-video', `${Math.max(-160, y * -0.12)}px`);
@@ -919,7 +935,7 @@ function applyBackgroundParallax(scrollY) {
 }
 
 function initCursorEffects() {
-    if (window.matchMedia('(pointer: coarse)').matches) return;
+    if (state.motionLite || window.matchMedia('(pointer: coarse), (hover: none)').matches) return;
 
     const ring = document.getElementById('cursorRing');
     const dot = document.getElementById('cursorDot');
@@ -964,6 +980,10 @@ function initCursorEffects() {
     window.addEventListener('blur', () => {
         document.body.classList.remove('cursor-hover', 'cursor-down');
     });
+}
+
+function isMotionLiteDevice() {
+    return window.matchMedia('(max-width: 900px), (hover: none), (pointer: coarse), (prefers-reduced-motion: reduce)').matches;
 }
 
 document.addEventListener('DOMContentLoaded', init);
