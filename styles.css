@@ -57,7 +57,6 @@
 
 html {
     scroll-behavior: smooth;
-    background-color: #02050b;
 }
 
 body {
@@ -70,7 +69,6 @@ body {
     min-height: 100vh;
     line-height: 1.6;
     overflow-x: hidden;
-    background-color: #02050b;
 }
 
 .bg-video {
@@ -1751,22 +1749,16 @@ body.cursor-down .cursor-ring {
         --parallax-orb-b: 0px;
     }
 
-    body {
-        background:
-            radial-gradient(circle at 78% 10%, rgba(58, 126, 176, 0.12), transparent 34%),
-            radial-gradient(circle at 14% 82%, rgba(92, 108, 188, 0.09), transparent 32%),
-            linear-gradient(180deg, #02050b 0%, #050b16 46%, #02050b 100%);
-        background-color: #02050b;
-    }
-
     .bg-video {
-        display: none;
+        opacity: 0.14;
+        transform: none;
+        transition: none;
+        filter: saturate(102%) contrast(100%) brightness(0.52);
     }
 
     body::before {
         animation: none;
-        filter: blur(24px) saturate(95%) brightness(0.42);
-        opacity: 0.38;
+        filter: blur(32px) saturate(105%);
     }
 
     .bg-grid,
@@ -1776,13 +1768,9 @@ body.cursor-down .cursor-ring {
         transition: none;
     }
 
-    .bg-grid {
-        opacity: 0.16;
-    }
-
     .bg-orb {
-        filter: blur(58px);
-        opacity: 0.26;
+        filter: blur(64px);
+        opacity: 0.34;
     }
 
     .navbar {
@@ -1790,7 +1778,7 @@ body.cursor-down .cursor-ring {
         background: rgba(5, 10, 18, 0.92);
     }
 
-    .js-enhanced body.mobile-motion-lite .reveal {
+    body.mobile-motion-lite .js-enhanced .reveal {
         opacity: 1;
         transform: none;
         transition: none;
