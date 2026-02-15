@@ -1,7 +1,7 @@
 (function () {
     document.documentElement.classList.add('js-enhanced');
     const motionLite = isMotionLiteDevice();
-    document.body.classList.toggle('mobile-motion-lite', motionLite);
+    if (motionLite) document.body.classList.add('mobile-motion-lite');
 
     const menuToggle = document.getElementById('menuToggle');
     const navLinks = document.getElementById('navLinks');
@@ -223,7 +223,8 @@ function initCursorEffects(motionLite) {
 
 function isMotionLiteDevice() {
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const mobileViewport = window.innerWidth <= 900;
-    const coarseTouch = window.matchMedia('(pointer: coarse) and (hover: none)').matches;
-    return reducedMotion || mobileViewport || coarseTouch;
+    const touchCapable = (navigator.maxTouchPoints || 0) > 0 || ('ontouchstart' in window);
+    const compactViewport = window.innerWidth <= 1100;
+    const coarsePointer = window.matchMedia('(hover: none), (pointer: coarse)').matches;
+    return reducedMotion || coarsePointer || (touchCapable && compactViewport);
 }

@@ -72,7 +72,7 @@ const state = {
 
 function init() {
     state.motionLite = isMotionLiteDevice();
-    document.body.classList.toggle('mobile-motion-lite', state.motionLite);
+    if (state.motionLite) document.body.classList.add('mobile-motion-lite');
     cacheDom();
     state.all = normalizeCatalog(WRITEUP_CATALOG);
     bindEvents();
@@ -984,9 +984,10 @@ function initCursorEffects() {
 
 function isMotionLiteDevice() {
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const mobileViewport = window.innerWidth <= 900;
-    const coarseTouch = window.matchMedia('(pointer: coarse) and (hover: none)').matches;
-    return reducedMotion || mobileViewport || coarseTouch;
+    const touchCapable = (navigator.maxTouchPoints || 0) > 0 || ('ontouchstart' in window);
+    const compactViewport = window.innerWidth <= 1100;
+    const coarsePointer = window.matchMedia('(hover: none), (pointer: coarse)').matches;
+    return reducedMotion || coarsePointer || (touchCapable && compactViewport);
 }
 
 document.addEventListener('DOMContentLoaded', init);
