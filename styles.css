@@ -1743,7 +1743,7 @@ body.cursor-down .cursor-ring {
     }
 }
 
-@media (max-width: 900px), (pointer: coarse), (hover: none) {
+@media (max-width: 1100px), (pointer: coarse), (hover: none) {
     :root {
         --parallax-shift: 0px;
         --parallax-video: 0px;
@@ -1795,6 +1795,30 @@ body.cursor-down .cursor-ring {
         transform: none;
         transition: none;
     }
+}
+
+body.mobile-motion-lite {
+    background:
+        radial-gradient(circle at 76% 10%, rgba(45, 98, 145, 0.1), transparent 36%),
+        radial-gradient(circle at 16% 82%, rgba(70, 84, 155, 0.08), transparent 36%),
+        linear-gradient(180deg, #01040a 0%, #040913 46%, #01040a 100%);
+    background-color: #01040a;
+}
+
+body.mobile-motion-lite .bg-video,
+body.mobile-motion-lite .bg-grid,
+body.mobile-motion-lite .bg-orb {
+    display: none !important;
+}
+
+body.mobile-motion-lite::before {
+    animation: none !important;
+    filter: blur(20px) saturate(92%) brightness(0.34);
+    opacity: 0.28;
+}
+
+body.mobile-motion-lite::after {
+    opacity: 0.08;
 }
 
 @media (prefers-reduced-motion: reduce) {

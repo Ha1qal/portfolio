@@ -983,7 +983,11 @@ function initCursorEffects() {
 }
 
 function isMotionLiteDevice() {
-    return window.matchMedia('(max-width: 900px), (hover: none), (pointer: coarse), (prefers-reduced-motion: reduce)').matches;
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const touchCapable = (navigator.maxTouchPoints || 0) > 0 || ('ontouchstart' in window);
+    const compactViewport = window.innerWidth <= 1100;
+    const coarsePointer = window.matchMedia('(hover: none), (pointer: coarse)').matches;
+    return reducedMotion || coarsePointer || (touchCapable && compactViewport);
 }
 
 document.addEventListener('DOMContentLoaded', init);
