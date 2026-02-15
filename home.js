@@ -125,11 +125,11 @@ function initHeroRotator() {
     if (!target) return;
 
     const words = [
-        'HTB Walkthroughs',
-        'CTF Writeups',
-        'Malware Notes',
-        'Blue Team Mindset',
-        'Network Security'
+        'Threat Labs and Writeups',
+        'HTB Attack Paths',
+        'CTF Exploitation Notes',
+        'SOC and Blue Team Mindset',
+        'Network Defense'
     ];
 
     let index = 0;
